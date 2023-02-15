@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+        input, select {
+            margin-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form id="registration-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required><br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+        <label for="terms">I agree to the terms and conditions:</label>
+        <input type="checkbox" id="terms" name="terms" required><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h2>Responses:</h2>
+    <table id="responses">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        const form = document.getElementById('registration-form');
+        const responses = document.getElementById('responses');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const gender = document.getElementById('gender').value;
+
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            const emailCell = document.createElement('td');
+            const passwordCell = document.createElement('td');
+            const genderCell = document.createElement('td');
+
+            nameCell.textContent = name;
+            emailCell.textContent = email;
+            passwordCell.textContent = password;
+            genderCell.textContent = gender;
+
+            row.appendChild(nameCell);
+            row.appendChild(emailCell);
+            row.appendChild(passwordCell);
+            row.appendChild(genderCell);
+
+            responses.appendChild(row);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
